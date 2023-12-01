@@ -27,8 +27,8 @@ const FadingMaterial = shaderMaterial(
 
 extend({ FadingMaterial });
 
-function CylinderTrajectory({ coords }: { coords: [number, number, number, number] }) {
-  console.log("coords", coords);
+function CylinderTrajectory({ cityPair }: { cityPair: [number, number, number, number] }) {
+  console.log("cityPair", cityPair);
   return (
     <Cylinder args={[2, 2, 100]} position={[-20, 0, 220]}>
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}

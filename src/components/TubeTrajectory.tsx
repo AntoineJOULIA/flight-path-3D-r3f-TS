@@ -1,7 +1,7 @@
 import { shaderMaterial, Tube } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
 import { Color } from "three";
-import { createSplineFromCoords } from "../utils/geom";
+import { createSplineFromCityPair } from "../utils/geom";
 
 const FadingMaterial = shaderMaterial(
   {
@@ -27,8 +27,8 @@ const FadingMaterial = shaderMaterial(
 );
 extend({ FadingMaterial });
 
-function TubeTrajectory({ coords }: { coords: [number, number, number, number] }) {
-  const { spline } = createSplineFromCoords(coords);
+function TubeTrajectory({ cityPair }: { cityPair: [number, number, number, number] }) {
+  const { spline } = createSplineFromCityPair(cityPair);
 
   return (
     <Tube args={[spline, 200, 1, 8]}>

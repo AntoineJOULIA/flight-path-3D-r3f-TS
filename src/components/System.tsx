@@ -17,7 +17,7 @@ function System() {
     <group ref={ref}>
       <Earth />
       {cityPairs.map((cityPair) => (
-        <TubeTrajectory key={`${cityPair[0] - cityPair[1]}`} coords={cityPair} />
+        <TubeTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
       ))}
     </group>
   );

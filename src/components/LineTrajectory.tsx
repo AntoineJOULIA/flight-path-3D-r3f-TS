@@ -1,12 +1,12 @@
 import { Line } from "@react-three/drei";
 import { Vector3 } from "three";
 import { CURVE_SEGMENTS } from "../utils/constants";
-import { createSplineFromCoords } from "../utils/geom";
+import { createSplineFromCityPair } from "../utils/geom";
 
-function LineTrajectory({ coords }: { coords: [number, number, number, number] }) {
+function LineTrajectory({ cityPair }: { cityPair: [number, number, number, number] }) {
   // const trajRef = useRef<Mesh>(null!);
 
-  const { spline } = createSplineFromCoords(coords);
+  const { spline } = createSplineFromCityPair(cityPair);
   const points: Vector3[] = [];
   const vertices = spline.getPoints(CURVE_SEGMENTS - 1);
 

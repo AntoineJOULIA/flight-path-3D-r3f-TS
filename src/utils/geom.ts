@@ -18,8 +18,8 @@ function coordinateToPosition(lat: number, lon: number, radius: number) {
   );
 }
 
-function createSplineFromCoords(coords: [number, number, number, number]) {
-  const [startLat, startLon, endLat, endLon] = coords;
+function createSplineFromCityPair(cityPairCoords: [number, number, number, number]) {
+  const [startLat, startLon, endLat, endLon] = cityPairCoords;
 
   const startPosition = coordinateToPosition(startLat, startLon, EARTH_RADIUS);
   const endPosition = coordinateToPosition(endLat, endLon, EARTH_RADIUS);
@@ -33,4 +33,4 @@ function createSplineFromCoords(coords: [number, number, number, number]) {
   return { startPosition, endPosition, spline: new CubicBezierCurve3(startPosition, mid1, mid2, endPosition) };
 }
 
-export { createSplineFromCoords };
+export { createSplineFromCityPair };
