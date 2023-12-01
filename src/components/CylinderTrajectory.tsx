@@ -1,6 +1,7 @@
 import { Cylinder, shaderMaterial } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
 import { Color } from "three";
+import { CityPair } from "../types/types";
 
 const FadingMaterial = shaderMaterial(
   {
@@ -27,7 +28,7 @@ const FadingMaterial = shaderMaterial(
 
 extend({ FadingMaterial });
 
-function CylinderTrajectory({ cityPair }: { cityPair: [number, number, number, number] }) {
+function CylinderTrajectory({ cityPair }: { cityPair: CityPair }) {
   console.log("cityPair", cityPair);
   return (
     <Cylinder args={[2, 2, 100]} position={[-20, 0, 220]}>

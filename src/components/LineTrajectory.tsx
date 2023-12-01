@@ -1,9 +1,10 @@
 import { Line } from "@react-three/drei";
 import { Vector3 } from "three";
+import { CityPair } from "../types/types";
 import { CURVE_SEGMENTS } from "../utils/constants";
 import { createSplineFromCityPair } from "../utils/geom";
 
-function LineTrajectory({ cityPair }: { cityPair: [number, number, number, number] }) {
+function LineTrajectory({ cityPair }: { cityPair: CityPair }) {
   // const trajRef = useRef<Mesh>(null!);
 
   const { spline } = createSplineFromCityPair(cityPair);

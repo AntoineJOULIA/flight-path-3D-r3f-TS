@@ -1,6 +1,7 @@
 import { geoInterpolate } from "d3-geo";
 import { CubicBezierCurve3, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils";
+import { CityPair } from "../types/types";
 import { CURVE_MAX_ALTITUDE, CURVE_MIN_ALTITUDE, EARTH_RADIUS } from "./constants";
 
 function clamp(num: number, min: number, max: number) {
@@ -18,7 +19,7 @@ function coordinateToPosition(lat: number, lon: number, radius: number) {
   );
 }
 
-function createSplineFromCityPair(cityPairCoords: [number, number, number, number]) {
+function createSplineFromCityPair(cityPairCoords: CityPair) {
   const [startLat, startLon, endLat, endLon] = cityPairCoords;
 
   const startPosition = coordinateToPosition(startLat, startLon, EARTH_RADIUS);

@@ -10,7 +10,7 @@ function System() {
   const ref = useRef<Group>(null!);
 
   useFrame((state, delta) => {
-    ref.current.rotation.y += delta * 0.0;
+    ref.current.rotation.y += delta * 0.1;
   });
 
   return (
