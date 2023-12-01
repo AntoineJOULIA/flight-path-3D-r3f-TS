@@ -3,7 +3,7 @@ import { Vector3 } from "three";
 import { CURVE_SEGMENTS } from "../utils/constants";
 import { createSplineFromCoords } from "../utils/geom";
 
-function Trajectory({ coords }: { coords: [number, number, number, number] }) {
+function LineTrajectory({ coords }: { coords: [number, number, number, number] }) {
   // const trajRef = useRef<Mesh>(null!);
 
   const { spline } = createSplineFromCoords(coords);
@@ -18,4 +18,4 @@ function Trajectory({ coords }: { coords: [number, number, number, number] }) {
   return <Line points={points} color="skyblue" linewidth={1}></Line>;
 }
 
-export { Trajectory };
+export { LineTrajectory };
