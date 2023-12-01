@@ -1,7 +1,7 @@
 import { geoInterpolate } from "d3-geo";
-import { CubicBezierCurve3, Vector3 } from "three";
+import { CatmullRomCurve3, CubicBezierCurve3, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils";
-import { CityPair } from "../types/types";
+import { CityPair, Flight } from "../types/types";
 import { CURVE_MAX_ALTITUDE, CURVE_MIN_ALTITUDE, EARTH_RADIUS } from "./constants";
 
 function clamp(num: number, min: number, max: number) {
@@ -19,7 +19,7 @@ function coordinateToPosition(lat: number, lon: number, radius: number) {
   );
 }
 
-function createSplineFromCityPair(cityPairCoords: CityPair) {
+export function createSplineFromCityPair(cityPairCoords: CityPair) {
   const [startLat, startLon, endLat, endLon] = cityPairCoords;
 
   const startPosition = coordinateToPosition(startLat, startLon, EARTH_RADIUS);
@@ -34,4 +34,12 @@ function createSplineFromCityPair(cityPairCoords: CityPair) {
   return { startPosition, endPosition, spline: new CubicBezierCurve3(startPosition, mid1, mid2, endPosition) };
 }
 
-export { createSplineFromCityPair };
+export function createCurveFromFlight(flight: Flight) {
+  const points = flight.map((flightSegment) => {
+    const [startLon, startLat, startAlt] = flightSegment.start;
+    return coordinateToPosition(startLat, startLon, EARTH_RADIUS + startAlt / 10000);
+  });
+  const [endLon, endLat, endAlt] = flight[flight.length - 1].end;
+  points.push(coordinateToPosition(endLat, endLon, EARTH_RADIUS + endAlt / 10000));
+  return new CatmullRomCurve3(points);
+}

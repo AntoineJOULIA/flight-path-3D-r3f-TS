@@ -28,7 +28,7 @@ const FadingMaterial = shaderMaterial(
 );
 extend({ FadingMaterial });
 
-function TubeTrajectory({ cityPair }: { cityPair: CityPair }) {
+function TubeCityPairTrajectory({ cityPair }: { cityPair: CityPair }) {
   const { spline } = createSplineFromCityPair(cityPair);
 
   return (
@@ -40,4 +40,4 @@ function TubeTrajectory({ cityPair }: { cityPair: CityPair }) {
   );
 }
 
-export { TubeTrajectory };
+export { TubeCityPairTrajectory };
