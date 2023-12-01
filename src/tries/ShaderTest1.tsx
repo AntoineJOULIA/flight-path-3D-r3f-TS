@@ -5,7 +5,7 @@ import { Color, Mesh } from "three";
 
 // exemple found on https://codesandbox.io/p/sandbox/r3f-shader-material-yltgr?file=%2Fsrc%2Findex.js
 const OpacityVaryingMaterial = shaderMaterial(
-  { transparent: true, time: 0, color: new Color(1, 0, 0) },
+  { time: 0, color: new Color(0, 0, 0) },
   `varying vec2 vUv;
 void main() {
 	vUv = uv;
@@ -27,9 +27,9 @@ function ShaderTest1() {
   const ref = useRef<Mesh>(null!);
   return (
     <Cylinder ref={ref} args={[5, 5, 100, 10, 10]} position={[0, 0, 220]}>
-      {/* <meshStandardMaterial wireframe={true} /> */}
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore */}
-      <opacityVaryingMaterial color={new Color(0.1, 0.1, 0.9)} />
+      <opacityVaryingMaterial color={new Color(0.1, 0.1, 0.9)} transparent={true} />
     </Cylinder>
   );
 }

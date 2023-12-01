@@ -6,6 +6,7 @@ import { ShaderTest1 } from "../tries/ShaderTest1";
 import { ShaderTest2 } from "../tries/ShaderTest2";
 import { Earth } from "./Earth";
 import { LineTrajectory } from "./LineTrajectory";
+import { CylinderTrajectory } from "./CylinderTrajectory";
 
 function System() {
   // The exclamation mark is a non-null assertion that will let TS know that ref.current is defined when we access it in effects.
@@ -23,6 +24,7 @@ function System() {
       ))}
       <ShaderTest1 />
       <ShaderTest2 />
+      <CylinderTrajectory coords={cityPairs[0]} />
     </group>
   );
 }
