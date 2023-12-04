@@ -1,6 +1,6 @@
 import { shaderMaterial, Tube } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { Color } from "three";
+import { Color, ShaderMaterial } from "three";
 import { useRef } from "react";
 import { Flight } from "../types/types";
 import { createCurveFromFlight } from "../utils/geom";
@@ -22,8 +22,7 @@ const MovingMaterial = shaderMaterial(
 extend({ MovingMaterial });
 
 function AnimatedFlightTrajectory({ flight }: { flight: Flight }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const materialRef = useRef<any>(null!);
+  const materialRef = useRef<ShaderMaterial>(null!);
 
   useFrame(() => {
     materialRef.current.uniforms.uStartX.value += 0.001;

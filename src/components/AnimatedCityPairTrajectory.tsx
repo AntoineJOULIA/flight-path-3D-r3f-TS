@@ -1,7 +1,7 @@
 import { shaderMaterial, Tube } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import { Color } from "three";
+import { Color, ShaderMaterial } from "three";
 import { CityPair } from "../types/types";
 import { createSplineFromCityPair } from "../utils/geom";
 
@@ -22,8 +22,7 @@ const MovingMaterial = shaderMaterial(
 extend({ MovingMaterial });
 
 function AnimatedCityPairTrajectory({ cityPair }: { cityPair: CityPair }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const materialRef = useRef<any>(null!);
+  const materialRef = useRef<ShaderMaterial>(null!);
 
   const { spline } = createSplineFromCityPair(cityPair);
 
