@@ -1,6 +1,7 @@
 import { Box } from "@react-three/drei";
 import { CityPair, Flight } from "../types/types";
 import { LineTrajectory } from "./LineTrajectory";
+import { StaticTrajectory } from "./StaticTrajectory";
 
 type TrajectoryDisplay = "line" | "static" | "animated";
 export type TrajectoryInput = CityPair | Flight;
@@ -31,6 +32,8 @@ function Trajectory({ display, input }: TrajectoryProps) {
   switch (display) {
     case "line":
       return <LineTrajectory input={input} />;
+    case "static":
+      return <StaticTrajectory input={input} />;
     default:
       return <Box />;
   }

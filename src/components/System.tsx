@@ -19,8 +19,8 @@ function System() {
   return (
     <group ref={ref}>
       <Earth />
-      <Trajectory display="line" input={flight} />
-      <Trajectory display="line" input={cityPairs[0]} />
+      <Trajectory display="static" input={flight} />
+      <Trajectory display="static" input={cityPairs[0]} />
       {/* <AnimatedFlightTrajectory flight={flight} />
       {cityPairs.map((cityPair) => (
         <AnimatedCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
