@@ -1,12 +1,10 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Group } from "three";
-import { ShaderTest3 } from "../tries/ShaderTest3";
-import { TubeTest } from "../tries/TubeTest";
 import { cityPairs } from "../utils/cityPairs";
 import { flight } from "../utils/flight";
+import { AnimatedCityPairTrajectory } from "./AnimatedCityPairTrajectory";
 import { Earth } from "./Earth";
-import { TubeCityPairTrajectory } from "./TubeCityPairTrajectory";
 import { TubeFlightTrajectory } from "./TubeFlightTrajectory";
 
 function System() {
@@ -21,11 +19,9 @@ function System() {
     <group ref={ref}>
       <Earth />
       <TubeFlightTrajectory flight={flight} />
-      <ShaderTest3 />
-      {/* {cityPairs.map((cityPair) => (
-        <TubeTest key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
-        <TubeCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
-      ))} */}
+      {cityPairs.map((cityPair) => (
+        <AnimatedCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
+      ))}
     </group>
   );
 }
