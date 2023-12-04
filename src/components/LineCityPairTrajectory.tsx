@@ -4,9 +4,7 @@ import { CityPair } from "../types/types";
 import { CURVE_SEGMENTS } from "../utils/constants";
 import { createSplineFromCityPair } from "../utils/geom";
 
-function LineTrajectory({ cityPair }: { cityPair: CityPair }) {
-  // const trajRef = useRef<Mesh>(null!);
-
+function LineCityPairTrajectory({ cityPair }: { cityPair: CityPair }) {
   const { spline } = createSplineFromCityPair(cityPair);
   const points: Vector3[] = [];
   const vertices = spline.getPoints(CURVE_SEGMENTS - 1);
@@ -19,4 +17,4 @@ function LineTrajectory({ cityPair }: { cityPair: CityPair }) {
   return <Line points={points} color="skyblue" linewidth={1}></Line>;
 }
 
-export { LineTrajectory };
+export { LineCityPairTrajectory };
