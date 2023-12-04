@@ -6,6 +6,7 @@ import { flight } from "../utils/flight";
 import { AnimatedCityPairTrajectory } from "./AnimatedCityPairTrajectory";
 import { AnimatedFlightTrajectory } from "./AnimatedFlightTrajectory";
 import { Earth } from "./Earth";
+import { Trajectory } from "./Trajectory";
 
 function System() {
   // The exclamation mark is a non-null assertion that will let TS know that ref.current is defined when we access it in effects.
@@ -18,10 +19,12 @@ function System() {
   return (
     <group ref={ref}>
       <Earth />
-      <AnimatedFlightTrajectory flight={flight} />
+      <Trajectory display="line" input={flight} />
+      <Trajectory display="line" input={cityPairs[0]} />
+      {/* <AnimatedFlightTrajectory flight={flight} />
       {cityPairs.map((cityPair) => (
         <AnimatedCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
-      ))}
+      ))} */}
     </group>
   );
 }
