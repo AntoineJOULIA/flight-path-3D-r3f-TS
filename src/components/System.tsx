@@ -3,8 +3,6 @@ import { useRef } from "react";
 import { Group } from "three";
 import { cityPairs } from "../utils/cityPairs";
 import { flight } from "../utils/flight";
-import { AnimatedCityPairTrajectory } from "./AnimatedCityPairTrajectory";
-import { AnimatedFlightTrajectory } from "./AnimatedFlightTrajectory";
 import { Earth } from "./Earth";
 import { Trajectory } from "./Trajectory";
 
@@ -19,8 +17,8 @@ function System() {
   return (
     <group ref={ref}>
       <Earth />
-      <Trajectory display="static" input={flight} />
-      <Trajectory display="static" input={cityPairs[0]} />
+      <Trajectory display="animated" input={flight} />
+      <Trajectory display="animated" input={cityPairs[0]} />
       {/* <AnimatedFlightTrajectory flight={flight} />
       {cityPairs.map((cityPair) => (
         <AnimatedCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
