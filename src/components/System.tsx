@@ -1,6 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Group } from "three";
+import { TubeTest } from "../tries/TubeTest";
 import { cityPairs } from "../utils/cityPairs";
 import { flight } from "../utils/flight";
 import { Earth } from "./Earth";
@@ -20,7 +21,8 @@ function System() {
       <Earth />
       <TubeFlightTrajectory flight={flight} />
       {cityPairs.map((cityPair) => (
-        <TubeCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
+        <TubeTest key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
+        // <TubeCityPairTrajectory key={`${cityPair[0] - cityPair[1]}`} cityPair={cityPair} />
       ))}
     </group>
   );
