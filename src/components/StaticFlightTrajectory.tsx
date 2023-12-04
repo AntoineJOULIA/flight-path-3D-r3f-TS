@@ -28,7 +28,7 @@ const FadingMaterial = shaderMaterial(
 );
 extend({ FadingMaterial });
 
-function TubeFlightTrajectory({ flight }: { flight: Flight }) {
+function StaticFlightTrajectory({ flight }: { flight: Flight }) {
   const curve = createCurveFromFlight(flight);
 
   return (
@@ -40,4 +40,4 @@ function TubeFlightTrajectory({ flight }: { flight: Flight }) {
   );
 }
 
-export { TubeFlightTrajectory };
+export { StaticFlightTrajectory };
