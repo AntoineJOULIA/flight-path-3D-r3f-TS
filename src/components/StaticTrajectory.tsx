@@ -6,6 +6,7 @@ import { isCityPairInput, TrajectoryInput } from "../types/types";
 
 import vertexShader from "../shaders/trajectories/trajectory.vert?raw";
 import fragmentShader from "../shaders/trajectories/static.frag?raw";
+import { DEFAULT_TRAJECTORY_COLOR, DEFAULT_TRAJECTORY_RADIUS } from "../utils/constants";
 
 const FadingMaterial = shaderMaterial(
   {
@@ -17,7 +18,13 @@ const FadingMaterial = shaderMaterial(
 );
 extend({ FadingMaterial });
 
-function StaticTrajectory({ input }: { input: TrajectoryInput }) {
+type Props = {
+  input: TrajectoryInput;
+  size?: number;
+  color?: Color;
+};
+
+function StaticTrajectory({ input, size = DEFAULT_TRAJECTORY_RADIUS, color = DEFAULT_TRAJECTORY_COLOR }: Props) {
   let points: Curve<Vector3>;
   if (isCityPairInput(input)) {
     const { spline } = createSplineFromCityPair(input);
@@ -27,10 +34,10 @@ function StaticTrajectory({ input }: { input: TrajectoryInput }) {
     points = curve;
   }
   return (
-    <Tube args={[points, 200, 1, 8]}>
+    <Tube args={[points, 200, size, 8]}>
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore */}
-      <fadingMaterial transparent={true} uColor={new Color(0.1, 0.5, 0.8)} />
+      <fadingMaterial transparent={true} uColor={color} />
     </Tube>
   );
 }
