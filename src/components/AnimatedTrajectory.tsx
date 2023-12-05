@@ -1,9 +1,9 @@
-import { isCityPairInput, TrajectoryInput } from "./Trajectory";
 import { shaderMaterial, Tube } from "@react-three/drei";
 import { Color, Curve, ShaderMaterial, Vector3 } from "three";
 import { extend, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { createCurveFromFlight, createSplineFromCityPair } from "../utils/geom";
+import { isCityPairInput, TrajectoryInput } from "../types/types";
 
 // the '?raw' indicates to Vite to import the content of the file as a string
 import vertexShader from "../shaders/trajectories/trajectory.vert?raw";

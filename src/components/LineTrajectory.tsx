@@ -1,8 +1,8 @@
 import { Line } from "@react-three/drei";
 import { Vector3 } from "three";
+import { isCityPairInput, TrajectoryInput } from "../types/types";
 import { CURVE_SEGMENTS } from "../utils/constants";
 import { createCurveFromFlight, createSplineFromCityPair } from "../utils/geom";
-import { isCityPairInput, TrajectoryInput } from "./Trajectory";
 
 function LineTrajectory({ input }: { input: TrajectoryInput }) {
   let points: Vector3[] = [];

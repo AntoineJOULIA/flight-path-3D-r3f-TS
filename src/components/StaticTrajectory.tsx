@@ -2,7 +2,7 @@ import { shaderMaterial, Tube } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
 import { Color, Curve, Vector3 } from "three";
 import { createCurveFromFlight, createSplineFromCityPair } from "../utils/geom";
-import { isCityPairInput, TrajectoryInput } from "./Trajectory";
+import { isCityPairInput, TrajectoryInput } from "../types/types";
 
 import vertexShader from "../shaders/trajectories/trajectory.vert?raw";
 import fragmentShader from "../shaders/trajectories/static.frag?raw";
