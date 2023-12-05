@@ -1,46 +1,33 @@
 import { shaderMaterial, Tube } from "@react-three/drei";
 import { extend } from "@react-three/fiber";
-import { Color } from "three";
-import { CityPair, Flight } from "../types/types";
+import { Color, Curve, Vector3 } from "three";
 import { createCurveFromFlight, createSplineFromCityPair } from "../utils/geom";
 import { isCityPairInput, TrajectoryInput } from "./Trajectory";
 
-function StaticTrajectory({ input }: { input: TrajectoryInput }) {
-  if (isCityPairInput(input)) {
-    return <StaticCityPairTrajectory cityPair={input} />;
-  }
-  return <StaticFlightTrajectory flight={input} />;
-}
+import vertexShader from "../shaders/trajectories/trajectory.vert?raw";
+import fragmentShader from "../shaders/trajectories/static.frag?raw";
 
 const FadingMaterial = shaderMaterial(
   {
     uTime: 0,
     uColor: new Color(0.1, 0.5, 0.8),
   },
-  `varying vec2 vUv;
-  
- void main() {
-	vUv = uv;
-	gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
- } `,
-  `varying vec2 vUv;
-  uniform float uTime;
-  uniform vec3 uColor;
-
-  void main() {
-	float alpha = vUv.x;
-	vec4 color = vec4(uColor, alpha);
-	gl_FragColor = color;
-  }
-  `
+  vertexShader,
+  fragmentShader
 );
 extend({ FadingMaterial });
 
-function StaticCityPairTrajectory({ cityPair }: { cityPair: CityPair }) {
-  const { spline } = createSplineFromCityPair(cityPair);
-
+function StaticTrajectory({ input }: { input: TrajectoryInput }) {
+  let points: Curve<Vector3>;
+  if (isCityPairInput(input)) {
+    const { spline } = createSplineFromCityPair(input);
+    points = spline;
+  } else {
+    const curve = createCurveFromFlight(input);
+    points = curve;
+  }
   return (
-    <Tube args={[spline, 200, 1, 8]}>
+    <Tube args={[points, 200, 1, 8]}>
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore */}
       <fadingMaterial transparent={true} uColor={new Color(0.1, 0.5, 0.8)} />
@@ -48,15 +35,4 @@ function StaticCityPairTrajectory({ cityPair }: { cityPair: CityPair }) {
   );
 }
 
-function StaticFlightTrajectory({ flight }: { flight: Flight }) {
-  const curve = createCurveFromFlight(flight);
-
-  return (
-    <Tube args={[curve, 200, 0.1, 8]}>
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-      {/* @ts-ignore */}
-      <fadingMaterial transparent={true} uColor={new Color(0.1, 0.5, 0.8)} />
-    </Tube>
-  );
-}
 export { StaticTrajectory };
