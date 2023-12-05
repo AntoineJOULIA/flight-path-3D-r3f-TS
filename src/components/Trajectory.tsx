@@ -17,9 +17,13 @@ function Trajectory({ display, input }: TrajectoryProps) {
     case "animated":
       return <AnimatedTrajectory input={input} />;
     default:
-      // TODO impossible -> return a never type
-      return <LineTrajectory input={input} />;
+      // Will cause an error if all the cases of 'display' are not treated
+      exhaustiveGuard(display);
   }
+}
+
+function exhaustiveGuard(value: never): never {
+  throw new Error(`ERROR! Reached forbidden guard function with unexpected value: ${JSON.stringify(value)}`);
 }
 
 export { Trajectory };
