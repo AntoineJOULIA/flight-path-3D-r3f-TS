@@ -2,7 +2,7 @@ export type CityPair = [startLat: number, startLon: number, endLat: number, endL
 
 type Coordinates = [lon: number, lat: number, alt: number];
 
-type FlightSegment = {
+export type FlightSegment = {
   aircraftType: string;
   callSign: string;
   departureAirport: string;
@@ -10,7 +10,6 @@ type FlightSegment = {
   start: Coordinates;
   end: Coordinates;
 };
-
 export type Flight = FlightSegment[];
 
 export type TrajectoryDisplay = "line" | "static" | "animated";

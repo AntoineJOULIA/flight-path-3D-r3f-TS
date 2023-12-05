@@ -1,7 +1,7 @@
 import { geoInterpolate } from "d3-geo";
 import { CatmullRomCurve3, CubicBezierCurve3, Vector3 } from "three";
 import { MathUtils } from "three/src/math/MathUtils";
-import { CityPair, Flight } from "../types/types";
+import { CityPair, FlightSegment } from "../types/types";
 import { CURVE_MAX_ALTITUDE, CURVE_MIN_ALTITUDE, EARTH_RADIUS } from "./constants";
 
 function clamp(num: number, min: number, max: number) {
@@ -34,7 +34,7 @@ export function createSplineFromCityPair(cityPairCoords: CityPair) {
   return { startPosition, endPosition, spline: new CubicBezierCurve3(startPosition, mid1, mid2, endPosition) };
 }
 
-export function createCurveFromFlight(flight: Flight) {
+export function createCurveFromFlight(flight: FlightSegment[]) {
   const points = flight.map((flightSegment) => {
     const [startLon, startLat, startAlt] = flightSegment.start;
     return coordinateToPosition(startLat, startLon, EARTH_RADIUS + startAlt / 10000);
