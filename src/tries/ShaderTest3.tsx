@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { Color, Mesh } from "three";
 
 // the '?raw' indicates to Vite to import the content of the file as a string
-import vertexShader from "../shaders/tests/vertex.glsl?raw";
-import fragmentShader from "../shaders/tests/fragment.glsl?raw";
+import vertexShader from "./shaders/vertex.glsl?raw";
+import fragmentShader from "./shaders/fragment.glsl?raw";
 
 // exemple found on https://codesandbox.io/p/sandbox/r3f-shader-material-yltgr?file=%2Fsrc%2Findex.js
 const OpacityVaryingMaterial = shaderMaterial({ time: 0, color: new Color(0, 0, 0) }, vertexShader, fragmentShader);
